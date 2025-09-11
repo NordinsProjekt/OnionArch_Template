@@ -1,6 +1,12 @@
+using Application.Services;
+using Application.Services.Interfaces;
 using BlazorServer.Components;
+using Infrastructure.EFCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

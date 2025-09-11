@@ -10,7 +10,7 @@ namespace Infrastructure.EFCore;
 
 public class EmployeeRepository : IEmployeeRepository
 {
-    private List<Employee> _employees = new List<Employee>();
+    private List<Employee> _employees = new();
     
     public EmployeeRepository()
     {
@@ -26,14 +26,11 @@ public class EmployeeRepository : IEmployeeRepository
 
     public bool Delete(Guid id)
     {
-        Employee? employee = _employees.FirstOrDefault(e => e.Id == id);
-        if (employee is not null)
-        {
-            _employees.Remove(employee);
-            return true;
-        }
+        var employee = _employees.FirstOrDefault(e => e.Id == id);
+        if (employee is null) return false;
 
-        return false;
+        _employees.Remove(employee);
+        return true;
     }
 
     public Employee? GetById(Guid id)
@@ -44,15 +41,14 @@ public class EmployeeRepository : IEmployeeRepository
     public bool Update(Employee employee)
     {
         var existingEmployee = _employees.FirstOrDefault(e => e.Id == employee.Id);
-        if (existingEmployee is not null)
-        {
-            existingEmployee.EmployeeNumber = employee.EmployeeNumber;
-            existingEmployee.FirstName = employee.FirstName;
-            existingEmployee.LastName = employee.LastName;
-            existingEmployee.Email = employee.Email;
-            return true;
-        }
-        return false;
+        if (existingEmployee is null) return false;
+
+        existingEmployee.EmployeeNumber = employee.EmployeeNumber;
+        existingEmployee.FirstName = employee.FirstName;
+        existingEmployee.LastName = employee.LastName;
+        existingEmployee.Email = employee.Email;
+
+        return true;
     }
 
     public IEnumerable<Employee> GetAll()
