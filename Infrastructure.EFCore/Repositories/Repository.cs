@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 namespace Infrastructure.EFCore.Repositories;
 
 /// <summary>
-/// Generic repository implementation
+///     Generic repository implementation
 /// </summary>
-public class Repository<T>(ApplicationDbContext context) : IRepository<T>
+public class Repository<T>(CMSDbContext context) : IRepository<T>
     where T : class, IEntity
 {
-    protected readonly ApplicationDbContext _context = context;
+    protected readonly CMSDbContext _context = context;
     protected readonly DbSet<T> _dbSet = context.Set<T>();
 
     public virtual async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)

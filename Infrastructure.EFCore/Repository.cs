@@ -5,10 +5,10 @@ namespace Infrastructure.EFCore;
 
 public class Repository<T> : IRepository<T> where T : class
 {
-    private readonly ApplicationDbContext _context;
+    private readonly CMSDbContext _context;
     private readonly DbSet<T> _dbSet;
 
-    public Repository(ApplicationDbContext context)
+    public Repository(CMSDbContext context)
     {
         _context = context;
         _dbSet = _context.Set<T>();

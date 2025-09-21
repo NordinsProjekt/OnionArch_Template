@@ -8,58 +8,58 @@ namespace Infrastructure.EFCore;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Adds the ApplicationDbContext to the service collection with SQL Server
+    ///     Adds the CMSDbContext to the service collection with SQL Server
     /// </summary>
-    public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApplicationDbContext(this IServiceCollection services,
+        IConfiguration configuration)
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<CMSDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         return services;
     }
 
     /// <summary>
-    /// Adds the ApplicationDbContext to the service collection with a custom connection string
+    ///     Adds the CMSDbContext to the service collection with a custom connection string
     /// </summary>
     public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, string connectionString)
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<CMSDbContext>(options =>
             options.UseSqlServer(connectionString));
 
         return services;
     }
 
     /// <summary>
-    /// Adds the ApplicationDbContext to the service collection with custom configuration
+    ///     Adds the CMSDbContext to the service collection with custom configuration
     /// </summary>
-    public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, Action<DbContextOptionsBuilder> configureOptions)
+    public static IServiceCollection AddApplicationDbContext(this IServiceCollection services,
+        Action<DbContextOptionsBuilder> configureOptions)
     {
-        services.AddDbContext<ApplicationDbContext>(configureOptions);
+        services.AddDbContext<CMSDbContext>(configureOptions);
         return services;
     }
 
     /// <summary>
-    /// Adds the ApplicationDbContext to the service collection with SQL Server and custom options
+    ///     Adds the CMSDbContext to the service collection with SQL Server and custom options
     /// </summary>
     public static IServiceCollection AddApplicationDbContext(
-        this IServiceCollection services, 
-        string connectionString, 
-        Action<Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder>? sqlServerOptions = null)
+        this IServiceCollection services,
+        string connectionString,
+        Action<SqlServerDbContextOptionsBuilder>? sqlServerOptions = null)
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
-        {
-            options.UseSqlServer(connectionString, sqlServerOptions);
-        });
+        services.AddDbContext<CMSDbContext>(options => { options.UseSqlServer(connectionString, sqlServerOptions); });
 
         return services;
     }
 
     /// <summary>
-    /// Adds the ApplicationDbContext with in-memory database (for testing)
+    ///     Adds the CMSDbContext with in-memory database (for testing)
     /// </summary>
-    public static IServiceCollection AddInMemoryApplicationDbContext(this IServiceCollection services, string databaseName = "TestDb")
+    public static IServiceCollection AddInMemoryApplicationDbContext(this IServiceCollection services,
+        string databaseName = "TestDb")
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<CMSDbContext>(options =>
             options.UseInMemoryDatabase(databaseName));
 
         return services;

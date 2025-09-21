@@ -1,18 +1,26 @@
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.EFCore;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+public class CMSDbContext(DbContextOptions<CMSDbContext> options) : DbContext(options)
 {
     // TODO: Add your DbSet properties here
     // Example:
     // public DbSet<YourEntity> YourEntities { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<ApiComponent> ApiComponents { get; set; }
+    public DbSet<ApiKey> ApiKeys { get; set; }
+    public DbSet<ApiKeyUsage> ApiKeyUsages { get; set; }
+    public DbSet<BasicComponent> BasicComponents { get; set; }
+    public DbSet<Component> Components { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CMSDbContext).Assembly);
 
         SeedData(modelBuilder);
     }
@@ -20,10 +28,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
-        {
             // Fallback configuration for development/testing
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=OnionArchDb;Trusted_Connection=true;MultipleActiveResultSets=true");
-        }
+            optionsBuilder.UseSqlServer(
+                "Server=(localdb)\\mssqllocaldb;Database=CCMS;Trusted_Connection=true;MultipleActiveResultSets=true");
 
         // Enable sensitive data logging in development
         #if DEBUG
