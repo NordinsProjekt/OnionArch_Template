@@ -5,9 +5,6 @@ namespace Infrastructure.EFCore;
 
 public class CMSDbContext(DbContextOptions<CMSDbContext> options) : DbContext(options)
 {
-    // TODO: Add your DbSet properties here
-    // Example:
-    // public DbSet<YourEntity> YourEntities { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<ApiComponent> ApiComponents { get; set; }
     public DbSet<ApiKey> ApiKeys { get; set; }

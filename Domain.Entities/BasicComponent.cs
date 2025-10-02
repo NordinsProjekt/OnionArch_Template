@@ -3,7 +3,7 @@ using Domain.Entities.Types;
 
 namespace Domain.Entities;
 
-public class BasicComponent : IEntity, IVisible
+public abstract class BasicComponent : IEntity, IVisible
 {
     public Guid Id { get; set; }
     public Guid ApiComponentId { get; set; }
