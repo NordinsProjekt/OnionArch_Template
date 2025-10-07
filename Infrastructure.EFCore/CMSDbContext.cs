@@ -9,6 +9,9 @@ public class CMSDbContext(DbContextOptions<CMSDbContext> options) : DbContext(op
     public DbSet<ApiComponent> ApiComponents { get; set; }
     public DbSet<ApiKey> ApiKeys { get; set; }
     public DbSet<ApiKeyUsage> ApiKeyUsages { get; set; }
+    public DbSet<ButtonBasicComponent> ButtonBasicComponents { get; set; }
+    public DbSet<TextAreaBasicComponent> TextAreaBasicComponents { get; set; }
+    public DbSet<TextBasicComponent> TextBasicComponents { get; set; }
     public DbSet<BasicComponent> BasicComponents { get; set; }
     public DbSet<Component> Components { get; set; }
 

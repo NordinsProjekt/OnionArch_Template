@@ -9,4 +9,5 @@ public class User : IEntity
     public string Email { get; set; } = string.Empty;
 
     public ICollection<ApiKey> ApiKeys { get; set; } = new List<ApiKey>();
+    public ICollection<Component> Component { get; set; } = new List<Component>();
 }

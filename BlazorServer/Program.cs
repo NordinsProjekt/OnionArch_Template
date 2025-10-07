@@ -8,9 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // EF Core DbContext registration (InMemory for example/demo; change to SQL Server in production)
 builder.Services.AddDbContext<CMSDbContext>(options =>
 {
-    options.UseInMemoryDatabase("AppDb");
-    // For SQL Server instead use:
-    // options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 // Register generic api client infrastructure
