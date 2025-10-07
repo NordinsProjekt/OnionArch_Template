@@ -200,10 +200,10 @@ public class RepositoryTests : IDisposable
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var factory = new ComponentFactory(userId);
+        var factory = new ComponentFactory();
 
         factory
-            .Begin()
+            .Begin(userId)
             .SetFlexBox()
             .SetFlexBoxDirection()
             .AddBasicButton();
@@ -240,10 +240,10 @@ public class RepositoryTests : IDisposable
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var factory = new ComponentFactory(userId);
+        var factory = new ComponentFactory();
 
         factory
-            .Begin()
+            .Begin(userId)
             .SetFlexBoxDirection(FlexDirectionType.Column)
             .AddBasicButton()
             .AddBasicTextBox()
@@ -280,10 +280,10 @@ public class RepositoryTests : IDisposable
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var factory = new ComponentFactory(userId);
+        var factory = new ComponentFactory();
 
         factory
-            .Begin()
+            .Begin(userId)
             .SetFlexBoxDirection(FlexDirectionType.Column)
             .AddBasicButton();
 
@@ -309,14 +309,14 @@ public class RepositoryTests : IDisposable
         // Arrange
         var userId = Guid.NewGuid();
 
-        var factory1 = new ComponentFactory(userId);
-        factory1.Begin().AddBasicButton();
+        var factory1 = new ComponentFactory();
+        factory1.Begin(userId).AddBasicButton();
         var component1 = factory1.Build();
         component1.Id = Guid.NewGuid();
         component1.Name = "Component 1";
 
-        var factory2 = new ComponentFactory(userId);
-        factory2.Begin()
+        var factory2 = new ComponentFactory();
+        factory2.Begin(userId)
             .AddBasicTextBox()
             .AddBasicTextArea();
         var component2 = factory2.Build();
@@ -346,8 +346,11 @@ public class RepositoryTests : IDisposable
     [Fact]
     public void ComponentFactory_InvalidUserId_ShouldThrowException()
     {
-        // Arrange & Act & Assert
-        var exception = Assert.Throws<Exception>(() => new ComponentFactory(Guid.Empty));
+        // Arrange
+        var factory = new ComponentFactory();
+        
+        // Act & Assert
+        var exception = Assert.Throws<Exception>(() => factory.Begin(Guid.Empty));
         Assert.Equal("Must be a valid UserId", exception.Message);
     }
 
@@ -356,9 +359,9 @@ public class RepositoryTests : IDisposable
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var factory = new ComponentFactory(userId);
+        var factory = new ComponentFactory();
 
-        factory.Begin().SetFlexBox(false);
+        factory.Begin(userId).SetFlexBox(false);
         var component = factory.Build();
 
         component.Id = Guid.NewGuid();

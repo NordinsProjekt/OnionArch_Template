@@ -1,4 +1,4 @@
-﻿using Application.Services.Interfaces;
+﻿using Application.Services.Factories.Interfaces;
 using Domain.Entities;
 
 namespace Application.Services.Factories;
@@ -6,16 +6,7 @@ namespace Application.Services.Factories;
 public class ComponentFactory : IComponentFactory
 {
     private Guid UserId { get; set; }
-    private readonly ComponentObject ComponentObject = new();
-    private List<BasicComponent> BasicComponents { get; set; }
-
-    public ComponentFactory(Guid userId)
-    {
-        if (userId == Guid.Empty) throw new Exception("Must be a valid UserId");
-
-        UserId = userId;
-        BasicComponents = new List<BasicComponent>();
-    }
+    private ComponentObject ComponentObject { get; } = new();
 
     public Component Build()
     {
@@ -28,8 +19,12 @@ public class ComponentFactory : IComponentFactory
         };
     }
 
-    public IComponentObject Begin()
+    public IComponentObject Begin(Guid userId)
     {
+        if (userId == Guid.Empty) throw new Exception("Must be a valid UserId");
+
+        UserId = userId;
+
         return ComponentObject;
     }
 }
