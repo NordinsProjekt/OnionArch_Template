@@ -3,29 +3,29 @@ using Domain.Entities.Types;
 
 namespace Application.Services.Factories;
 
-public class ApiComponentObject : IApiComponentObject
+public class ApiComponentObject : IGenericComponent
 {
-    public IComponentObject SetFlexBox(bool flexbox = false)
+    public IGenericComponent SetFlexBox(bool flexbox = false)
     {
         throw new NotImplementedException();
     }
 
-    public IComponentObject SetFlexBoxDirection(FlexDirectionType direction = FlexDirectionType.None)
+    public IGenericComponent SetFlexBoxDirection(FlexDirectionType direction = FlexDirectionType.None)
     {
         throw new NotImplementedException();
     }
 
-    public IComponentObject AddBasicButton()
+    public IGenericComponent AddBasicButton()
     {
         throw new NotImplementedException();
     }
 
-    public IComponentObject AddBasicTextBox()
+    public IGenericComponent AddBasicTextBox()
     {
         throw new NotImplementedException();
     }
 
-    public IComponentObject AddBasicTextArea()
+    public IGenericComponent AddBasicTextArea()
     {
         throw new NotImplementedException();
     }

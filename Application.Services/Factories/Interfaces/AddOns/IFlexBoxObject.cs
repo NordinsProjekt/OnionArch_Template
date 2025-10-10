@@ -4,6 +4,6 @@ namespace Application.Services.Factories.Interfaces.AddOns;
 
 public interface IFlexBoxObject
 {
-    IComponentObject SetFlexBox(bool flexbox = true);
-    IComponentObject SetFlexBoxDirection(FlexDirectionType direction = FlexDirectionType.Row);
+    IGenericComponent SetFlexBox(bool flexbox = true);
+    IGenericComponent SetFlexBoxDirection(FlexDirectionType direction = FlexDirectionType.Row);
 }

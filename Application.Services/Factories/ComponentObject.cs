@@ -4,20 +4,20 @@ using Domain.Entities.Types;
 
 namespace Application.Services.Factories;
 
-public class ComponentObject : IComponentObject
+public class ComponentObject : IGenericComponent
 {
     internal FlexDirectionType FlexDirectionType { get; set; } = FlexDirectionType.None;
     internal bool FlexBox { get; set; }
     internal List<BasicComponent> BasicComponents { get; set; } = new();
 
-    public IComponentObject SetFlexBox(bool flexbox = true)
+    public IGenericComponent SetFlexBox(bool flexbox = true)
     {
         FlexBox = flexbox;
 
         return this;
     }
 
-    public IComponentObject SetFlexBoxDirection(FlexDirectionType direction = FlexDirectionType.Row)
+    public IGenericComponent SetFlexBoxDirection(FlexDirectionType direction = FlexDirectionType.Row)
     {
         FlexBox = direction != FlexDirectionType.None;
         FlexDirectionType = direction;
@@ -25,21 +25,21 @@ public class ComponentObject : IComponentObject
         return this;
     }
 
-    public IComponentObject AddBasicButton()
+    public IGenericComponent AddBasicButton()
     {
         BasicComponents.Add(new ButtonBasicComponent { Text = "Ny knapp" });
 
         return this;
     }
 
-    public IComponentObject AddBasicTextBox()
+    public IGenericComponent AddBasicTextBox()
     {
         BasicComponents.Add(new TextBasicComponent { Text = "Ny textbasic komponent" });
 
         return this;
     }
 
-    public IComponentObject AddBasicTextArea()
+    public IGenericComponent AddBasicTextArea()
     {
         BasicComponents.Add(new TextAreaBasicComponent { Text = "Ny textarea komponent" });
 

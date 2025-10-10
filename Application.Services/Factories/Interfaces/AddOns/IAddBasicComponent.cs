@@ -2,7 +2,7 @@
 
 public interface IAddBasicComponent
 {
-    IComponentObject AddBasicButton();
-    IComponentObject AddBasicTextBox();
-    IComponentObject AddBasicTextArea();
+    IGenericComponent AddBasicButton();
+    IGenericComponent AddBasicTextBox();
+    IGenericComponent AddBasicTextArea();
 }
